@@ -151,10 +151,97 @@ function staff(){
 	//$sql = "select dept from staff group by dept having count(*)>2";
 	//寻找平均工资>3000的部门
 	//$sql = "select dept,avg(salary) as av from staff group by dept having avg(salary)>3000";
+	//联表查询
+	//$sql = "select devolo.id,staff.dept,staff.salary from devolo,staff where devolo.dept=staff.dept";
+	
 	$result = mysqli_query($con,$sql);
+	// if (!$result) {
+	//     printf("Error: %s\n", mysqli_error($con));
+	//     exit();
+	// }
 	while($row=mysqli_fetch_array($result)){
-		echo $row['ren'].":".$row['salary']."<br>";
+		echo $row['id'].":".$row['dept'].":".$row['salary']."<br>";
 	}
 }
-staff()
+
+//猴子选大王
+function monkeyKing($n, $m) {
+        $monkeys = range(1, $n);
+        $i = 0;                // 取出时候的坐标
+        $z = 0;                // 数到M的时候停
+        while(($mNum = count($monkeys)) > 1) {
+                if($i == $mNum) {
+                        $i = 0;                // 圈
+                }
+                $z++;
+                $i++;
+                if($z == $m) {
+                        array_splice($monkeys, --$i, 1);
+                        $z = 0;                // 归零
+                }
+        }
+        echo $monkeys[0];
+}
+
+//搜索hello world中的字母o，把字母o替换成字母n。使用字符串查找函数strpos()
+function cha(){
+	$str = "hello world";
+	while(true){
+		$pos = strpos($str,'o');
+		if($pos!=false){
+			$str[$pos] = 'n';
+		}else{
+			break;
+		}
+	}
+	echo $str;
+}
+
+//将 1234567890 转换为 1,234,567,890 每3位用逗号隔开的形式。
+function three(){
+	$str = '1234567890';
+	$str = strrev($str);
+	$str = chunk_split($str,3,',');
+	$str = rtrim($str,',');
+	$str = strrev($str);
+	echo $str;
+}
+
+//请写一段PHP代码，确保多个进程同时写入同一个文件成功。
+function writ(){
+
+$fp = fopen('test.txt','w+');
+if (flock($fp, LOCK_EX)) {
+    //获得写锁，写数据
+    fwrite($fp, 'write something!');
+    //解除锁定
+    flock($fp, LOCK_UN);
+} else {
+    echo 'file is locking...';
+}
+fclose($fp);
+
+}
+
+//有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？
+function four(){
+	$num = 0;
+	for($i=1;$i<=4;$i++)
+	{
+		for($j=1;$j<=4;$j++)
+		{
+			for($h=1;$h<=4;$h++)
+			{
+				if($i!=$j&&$i!=$h&&$j!=$h)
+				{
+					echo $i*100+$j*10+$h;
+					echo "<br>";
+					$num = $num + 1;
+				}
+			}
+		}
+	}
+	echo $num."个结果";
+}
+
 ?>

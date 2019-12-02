@@ -47,4 +47,35 @@ list($b,$a) = array($a,$b);
 echo "<br>";
 echo $a,$b;
 
+//获取客户端的IP地址
+echo "<br>".$_SERVER['REMOTE_ADDR'];
+//获取服务端的ip地址
+echo "<br>".$_SERVER['SERVER_ADDR'];
+
+//调用函数
+class demo{
+public $l = 26;
+public $r = 1993;
+public function sum(){
+return $this->l+$this->r;
+}
+}
+$a = new demo();
+//访问单独的变量
+echo $a->l;
+echo $a->r;
+//访问函数，返回和
+echo $a->sum();
+
+
+//反序输出
+echo '<br>';
+$a = '1234567890';
+for($i=9;$i>=0;$i--)
+{
+	echo $a[$i];
+}
+
+echo file_get_contents('http://www.phpres.com/index.html');
+
 ?>
