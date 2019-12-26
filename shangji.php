@@ -210,16 +210,16 @@ function three(){
 //请写一段PHP代码，确保多个进程同时写入同一个文件成功。
 function writ(){
 
-$fp = fopen('test.txt','w+');
-if (flock($fp, LOCK_EX)) {
-    //获得写锁，写数据
-    fwrite($fp, 'write something!');
-    //解除锁定
-    flock($fp, LOCK_UN);
-} else {
-    echo 'file is locking...';
-}
-fclose($fp);
+	$fp = fopen('test.txt','w+');
+	if (flock($fp, LOCK_EX)) {
+	    //获得写锁，写数据
+	    fwrite($fp, 'write something!');
+	    //解除锁定
+	    flock($fp, LOCK_UN);
+	} else {
+	    echo 'file is locking...';
+	}
+	fclose($fp);
 
 }
 
@@ -243,5 +243,29 @@ function four(){
 	}
 	echo $num."个结果";
 }
+
+//leetcode算法题->两数
+class Solution{
+	function ssddd($nums,$target){
+		for($i=0;$i<count($nums);$i++)
+		{
+			for($j=$i+1;$j<count($nums);$j++)
+			{
+				if($nums[$i]+$nums[$j]==$target)
+				{
+					echo $i.$j;
+					break;
+				}
+			}
+		}
+	}
+}
+$ss = new Solution();
+$str = array(2,7,11,15);
+$target = 9;
+//$ss->ssddd($str,$target);
+//
+
+
 
 ?>
