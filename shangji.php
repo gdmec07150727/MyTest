@@ -266,6 +266,73 @@ $target = 9;
 //$ss->ssddd($str,$target);
 //
 
+//无重复字符的最长子串(lecout网站)
+function Substring($str)
+{
+	$subArr = [];
+	for($i=0;$i<strlen($str);$i++)
+	{
+		$substr = [];
+		$substr[] = $str[$i];
+		for($j=$i+1;$j<strlen($str);$j++)
+		{
+			$substr[] = $str[$j];
+			if(count(array_unique($substr))!=count($substr))
+			{
+				array_pop($substr);
+				break;
+			}
+		}
+		if($substr>$subArr)
+		{
+			$subArr = $substr;
+		}else{
+			$subArr = $subArr;
+		}
+	}
+	return count($subArr);
+}
+
+//无重复字符的最长子串(lecout网站)(滑动方法)
+function lengthOfLongestSubstring($s) {
+        $len = strlen($s);
+        $win = [];
+        $res_len = 0;
+        $i = 0;
+        $j = 0;
+        while ($i<$len && $j<$len){
+            if(!in_array($s[$i],$win)){
+                $win[]= $s[$i++];
+                $res_len = max($res_len,$i-$j);
+ 
+            }else{
+                $j++;
+                array_shift($win);
+            }
+        }
+        return $res_len;
+}
+
+function lengthArr($str)
+{
+	$len = strlen($str);
+	$i = 0;
+	$j = 0;
+	$ren_len = 0;
+	$arr = [];
+	while($i<$len && $j<$len)
+	{
+		if(!in_array($str[$i],$arr))
+		{
+			$arr[] = $str[$i++];
+			$ren_len = max($ren_len,$i-$j);
+		}else{
+			array_shift($arr);
+			$j++;
+		}
+	}
+	return $ren_len;
+}
 
 
 ?>
